@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     @comment = Comment.new
-    @comment.article_id = @article.id 
+    @comment.article_id = @article.id
   end
 
   def new
@@ -25,7 +25,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    Article.destroy(params[:id])
+    @article = Article.find(params[:id])
+    @article.destroy
     flash.notice = "Article has been deleted"
 
     redirect_to action: "index"
